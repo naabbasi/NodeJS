@@ -2,9 +2,9 @@
 
     - mkdir backend && cd backend
     - npm init
-    - npm install express dotenv
-    - npm i -D typescript @types/express @types/node
-    - npm install -D concurrently nodemon tsc-alias rimraf
+    - npm install express body-parser cors dotenv uuid http-errors
+    - npm i -D typescript @types/express @types/node @types/uuid @types/cors @types/http-errors
+    - npm i -D concurrently nodemon tsc-alias rimraf
         - tsc-alias will be used to resolve paths:[] from tsconfig.json
     - npm install -g ts-node
     - Generating tsconfig.json
@@ -35,7 +35,7 @@ app.listen(port, () => {
     "build": "npx tsc",
     "start": "node dist/index.js",
     "predev": "rimraf dist && npx tsc && tsc-alias",
-    "dev": "concurrently \"npx tsc && tsc-alias --watch\" \"nodemon -q dist/index.js\"",
+    "dev": "concurrently \"npx tsc --watch\" \"tsc-alias --watch\" \"nodemon -q dist/index.js\"",
 </pre>
 
 #### Run dev server "npm run dev"

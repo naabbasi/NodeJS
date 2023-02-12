@@ -1,14 +1,13 @@
-import {NextFunction, Request, Response} from "express";
+import {Request, Response} from "express";
 import {EndpointsConfig} from "@config/endpoints-config.js";
+import {Message} from "@entities/message.js";
 
 const APP_ENDPOINTS = EndpointsConfig.router;
-APP_ENDPOINTS.use('/', (req: Request, res: Response, next: NextFunction) => {
-    console.log('Time: ', Date.now());
-    next();
-});
 
-APP_ENDPOINTS.get("/", (req: Request, res: Response) => {
-    res.send("Hello World");
+APP_ENDPOINTS.get("/api/app", (req: Request, res: Response) => {
+    let message = new Message();
+    message.message = "Application server has been started";
+    res.json(message);
 });
 
 export {APP_ENDPOINTS};

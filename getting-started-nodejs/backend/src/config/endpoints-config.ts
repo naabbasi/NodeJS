@@ -1,5 +1,7 @@
 import express, {Express} from 'express';
 import dotenv from 'dotenv';
+import bodyParser from "body-parser";
+import cors from "cors";
 
 dotenv.config();
 
@@ -10,6 +12,10 @@ class EndpointsConfig {
     private static readonly _routes = new Array<express.Router>();
 
     static get server(): express.Express {
+        this._server.set('json spaces', 2);
+        this._server.use(bodyParser.urlencoded({ extended: false }));
+        this._server.use(bodyParser.json());
+        this._server.use(cors());
         return this._server;
     }
 
@@ -27,9 +33,9 @@ class EndpointsConfig {
         this.refreshRoutes();
     }
 
-    private static refreshRoutes(){
+    private static refreshRoutes() {
         console.log("calling refresh");
-        for(let route of EndpointsConfig._routes){
+        for (let route of EndpointsConfig._routes) {
             console.log(`Setting route: ${route}`);
             EndpointsConfig._router.use(route);
         }

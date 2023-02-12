@@ -8,18 +8,25 @@
     "build": "npx tsc",
     "start": "node dist/index.js",
     "predev": "rimraf dist && npx tsc && tsc-alias",
-    "dev": "concurrently \"npx tsc && tsc-alias --watch\" \"nodemon -q dist/index.js\"",
+    "dev": "concurrently \"npx tsc --watch\" \"tsc-alias --watch\" \"nodemon -q dist/index.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "engr.nomiabbasi@gmail.com",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "http-errors": "^2.0.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
+    "@types/http-errors": "^2.0.1",
     "@types/node": "^18.13.0",
+    "@types/uuid": "^9.0.0",
     "concurrently": "^7.6.0",
     "nodemon": "^2.0.20",
     "rimraf": "^4.1.2",
