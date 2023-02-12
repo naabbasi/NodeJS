@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "Getting started with nodejs, expressjs, typeorm, reactjs with primereact and typescript",
   "main": "index.ts",
+  "type": "module",
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/index.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+    "predev": "rimraf dist && npx tsc && tsc-alias",
+    "dev": "concurrently \"npx tsc && tsc-alias --watch\" \"nodemon -q dist/index.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "engr.nomiabbasi@gmail.com",
@@ -20,6 +22,8 @@
     "@types/node": "^18.13.0",
     "concurrently": "^7.6.0",
     "nodemon": "^2.0.20",
+    "rimraf": "^4.1.2",
+    "tsc-alias": "^1.8.2",
     "typescript": "^4.9.5"
   }
 }

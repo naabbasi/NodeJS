@@ -4,13 +4,15 @@
     - npm init
     - npm install express dotenv
     - npm i -D typescript @types/express @types/node
-    - npm install -D concurrently nodemon
+    - npm install -D concurrently nodemon tsc-alias rimraf
+        - tsc-alias will be used to resolve paths:[] from tsconfig.json
+    - npm install -g ts-node
     - Generating tsconfig.json
         - npx tsc --init
         - Uncomment "outDir": "./" from tsconfig.json and make "outDir": "./dist"
         - change "main": "index.js" to "main": "index.ts"
 ### Create index.ts in backend root directory with following content
-<code>
+<pre>
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 
@@ -26,13 +28,14 @@ app.get('/', (req: Request, res: Response) => {
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });
-</code>
+</pre>
 
 #### Update "scripts" section in package.json  with the following:
-<code>
+<pre>
     "build": "npx tsc",
     "start": "node dist/index.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
-</code>
+    "predev": "rimraf dist && npx tsc && tsc-alias",
+    "dev": "concurrently \"npx tsc && tsc-alias --watch\" \"nodemon -q dist/index.js\"",
+</pre>
 
 #### Run dev server "npm run dev"
