@@ -5,7 +5,8 @@
       "@entities/*": ["entities/*"],
       "@endpoints/*": ["endpoints/*"],
       "@util/*": ["utils/*"],
-      "@config/*": ["config/*"]
+      "@config/*": ["config/*"],
+      "@data-source/*": ["data-source/*"]
     },
     "resolveJsonModule": true,
     "esModuleInterop": true,
@@ -25,7 +26,9 @@
     "importHelpers": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "target": "esnext"
+    "target": "esnext",
+    "emitDecoratorMetadata": true,                    /* Required for typeorm */
+    "experimentalDecorators": true,                   /* Required for typeorm */
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules"]

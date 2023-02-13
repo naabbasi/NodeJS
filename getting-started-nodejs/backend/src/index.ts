@@ -3,6 +3,7 @@ import {APP_ENDPOINTS} from "@endpoints/app-endpoints.js";
 import {USER_ENDPOINTS} from "@endpoints/user-endpoints.js";
 import {ErrorRequestHandler, NextFunction, Request, Response} from "express";
 import createHttpError from "http-errors";
+import "reflect-metadata";
 
 const server = EndpointsConfig.server;
 server.use((req: Request, res: Response, next: NextFunction) => {

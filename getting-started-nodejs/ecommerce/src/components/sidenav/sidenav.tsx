@@ -1,13 +1,42 @@
 import './sidenav.css';
 import {Button} from "primereact/button";
+import {useEffect, useState} from "react";
+import {Sidebar} from "primereact/sidebar";
+import axios from "axios";
 
 export const SideNav = () => {
+    const [visible, setVisible] = useState(false);
+    useEffect(()=>{
+        toggle();
+    }, []);
+
+    const allUsers = () => {
+        axios.get(`http://localhost:8000/api/user`)
+            .then(response => {
+                console.log(response.data);
+            }).catch(function (error) {
+            // handle error
+            console.log(error);
+        });
+        console.log('i fire once');
+    }
+
+    const saveUser = async () => {
+        let savedUser = await axios.post(`http://localhost:8000/api/user`, {
+            username: 'Noman Ali',
+            password: 'x',
+        });
+
+        console.log(`User has been saved ${savedUser}`);
+    }
+
     const toggle = () => {
         let arrow = document.querySelectorAll(".arrow");
         for (let i = 0; i < arrow.length; i++) {
             arrow[i].addEventListener("click", (e) => {
-                let arrowParent = e?.target?.parentElement?.parentElement; //selecting main parent of arrow
-                arrowParent.classList.toggle("showMenu");
+                const eventTarget = event?.target as HTMLElement;
+                let arrowParent = eventTarget.parentElement?.parentElement; //selecting main parent of arrow
+                arrowParent?.classList.toggle("showMenu");
             });
         }
 
@@ -17,12 +46,13 @@ export const SideNav = () => {
             sidebar?.classList.toggle("close");
         });
     }
+
     return (
         <>
             <div className="sidebar close">
                 <div className="logo-details">
                     <i className='pi pi-home'></i>
-                    <span className="logo_name">CodingLab</span>
+                    <span className="logo_name">QTerminals</span>
                 </div>
                 <ul className="nav-links">
                     <li>
@@ -142,6 +172,24 @@ export const SideNav = () => {
                     <i className='pi pi-bars'></i>
                     <span className="text">Drop Down Sidebar</span>
                     <Button onClick={() => toggle()}></Button>
+                </div>
+                <div className="mb-3 font-bold text-2xl">
+                    <span className="text-900">One Product, </span>
+                    <span className="text-purple-500">Many Solutions</span>
+                </div>
+                <div className="card flex justify-content-center">
+                    <Sidebar visible={visible} onHide={() => setVisible(false)}>
+                        <h2>Sidebar</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                    </Sidebar>
+                    <div className={"p-2"}>
+                        <Button icon="pi pi-arrow-right" onClick={() => setVisible(true)} />
+                        <Button icon="pi pi-user" onClick={() => allUsers()}>Show Users</Button>
+                        <Button icon="pi pi-user" onClick={() => saveUser()}>Save Users</Button>
+                    </div>
                 </div>
             </section>
         </>
