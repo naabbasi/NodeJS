@@ -3,7 +3,7 @@
     - mkdir backend && cd backend
     - npm init
     - npm install express body-parser cors dotenv uuid http-errors
-    - npm i -D typescript @types/express @types/node @types/uuid @types/cors @types/http-errors
+    - npm i -D typescript @types/node @types/express @types/uuid @types/cors @types/http-errors
     - npm i -D concurrently nodemon tsc-alias rimraf
         - tsc-alias will be used to resolve paths:[] from tsconfig.json
     - npm install -g ts-node
