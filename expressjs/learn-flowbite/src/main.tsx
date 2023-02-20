@@ -1,24 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
 import "./index.css";
-import { Flowbite } from "flowbite-react";
+import {Flowbite, Spinner} from "flowbite-react";
+import {RouterProvider} from "react-router-dom";
+import applicationRouter from "./router";
+
 
 const container = document.getElementById("root");
 
 if (container) {
-  const theme = {
-    sidebar: {
-      base: "h-full bg-inherit",
-      inner: "h-full overflow-y-auto overflow-x-hidden rounded bg-inherit py-4 px-3"
-    }
-  };
+    const theme = {
+        sidebar: {
+            base: "h-full bg-inherit",
+            inner: "h-full overflow-y-auto overflow-x-hidden rounded bg-inherit py-4 px-3"
+        }
+    };
 
-  ReactDOM.createRoot(container as HTMLElement).render(
-    <Flowbite theme={{ theme }}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </Flowbite>
-  );
+    ReactDOM.createRoot(container as HTMLElement).render(
+        <Flowbite theme={{theme}}>
+            <React.StrictMode>
+                <RouterProvider router={applicationRouter} fallbackElement={<div>
+                  <Spinner color="success" aria-label="Success spinner example"/>
+                </div>}/>
+            </React.StrictMode>
+        </Flowbite>
+    );
 }

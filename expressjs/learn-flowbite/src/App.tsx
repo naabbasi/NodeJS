@@ -2,12 +2,13 @@ import React from "react";
 import "./App.css";
 import {Navbar, Button, Sidebar} from "flowbite-react";
 import {HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiViewBoards} from "react-icons/hi";
+import {Outlet} from "react-router-dom";
 
 function App() {
     return (
-        <div>
+        <div className="bg-gray-900">
             <div className="container mx-auto">
-                <Navbar fluid={true} rounded={true}>
+                <Navbar fluid={true} rounded={true} className="bg-inherit">
                     <Navbar.Brand href="https://flowbite.com/">
                         <img src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-6 sm:h-9"
                              alt="Flowbite Logo"/>
@@ -33,13 +34,13 @@ function App() {
                         <Sidebar.Items>
                             <Sidebar.ItemGroup>
                                 <Sidebar.Item
-                                    href="#"
+                                    href="/dashboard"
                                     icon={HiChartPie}
                                 >
                                     Dashboard
                                 </Sidebar.Item>
                                 <Sidebar.Item
-                                    href="#"
+                                    href="/layout"
                                     icon={HiViewBoards}
                                     label="Pro"
                                     labelColor="alternative"
@@ -47,7 +48,7 @@ function App() {
                                     Kanban
                                 </Sidebar.Item>
                                 <Sidebar.Item
-                                    href="#"
+                                    href="#/test"
                                     icon={HiInbox}
                                     label="3"
                                 >
@@ -81,14 +82,17 @@ function App() {
                         </Sidebar.Items>
                     </Sidebar>
                 </div>
-                <div className="w-full">
-                    <div className="flex justify-between container mx-auto">
+                <div className="w-full h-full">
+                    <div className="flex items-center justify-between container mx-auto">
                         <div>
                             <h1 className="text-4xl font-semibold">Project Title</h1>
                         </div>
                         <div>
                             <h1 className="text-4xl font-semibold">Project Title</h1>
                         </div>
+                    </div>
+                    <div className="flex items-center justify-items-center">
+                        <Outlet/>
                     </div>
                 </div>
             </div>
