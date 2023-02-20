@@ -1,13 +1,21 @@
-import {Request, Response} from "express";
-import {EndpointsConfig} from "@config/endpoints-config.js";
-import {Message} from "@entities/message.js";
+import { Router } from "express";
+import GenericEndpoints from "./generic-endpoints.js";
+import { Application } from "@entities/application.js";
 
-const APP_ENDPOINTS = EndpointsConfig.router;
+export class AppEndpoints extends GenericEndpoints<Application> {
+  protected readonly router: Router;
 
-APP_ENDPOINTS.get("/api/app", (req: Request, res: Response) => {
-    let message = new Message();
-    message.message = "Application server has been started";
-    res.json(message);
-});
+  constructor(router: Router) {
+    super(router);
+    this.router = router;
+  }
 
-export {APP_ENDPOINTS};
+  protected getClass(): ReturnType<any> {
+    return AppEndpoints;
+  }
+
+
+  protected getEntity(): ReturnType<any> {
+    return Application;
+  }
+}

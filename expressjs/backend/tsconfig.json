@@ -22,7 +22,6 @@
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
-    "experimentalDecorators": true,
     "importHelpers": true,
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
