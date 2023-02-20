@@ -1,97 +1,99 @@
-import { useState } from "react";
+import React from "react";
 import "./App.css";
-import { Accordion, Sidebar } from "flowbite-react";
-import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser } from "react-icons/hi";
+import {Navbar, Button, Sidebar} from "flowbite-react";
+import {HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiViewBoards} from "react-icons/hi";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div className="flex">
-      <div className="flex flex-col h-screen p-1 shadow w-60">
-        <div className="space-y-3">
-          <Sidebar className="h-full" aria-label="Sidebar with multi-level dropdown">
-            <Sidebar.Items>
-              <Sidebar.ItemGroup>
-                <Sidebar.Item
-                  href="#"
-                  icon={HiChartPie}
-                >
-                  Dashboard
-                </Sidebar.Item>
-                <Sidebar.Collapse
-                  icon={HiShoppingBag}
-                  label="Billing"
-                >
-                  <Sidebar.Item href="#">
-                    Products
-                  </Sidebar.Item>
-                </Sidebar.Collapse>
-                <Sidebar.Item
-                  href="#"
-                  icon={HiInbox}
-                >
-                  Inbox
-                </Sidebar.Item>
-                <Sidebar.Item
-                  href="#"
-                  icon={HiUser}
-                >
-                  Users
-                </Sidebar.Item>
-                <Sidebar.Item
-                  href="#"
-                  icon={HiShoppingBag}
-                >
-                  Products
-                </Sidebar.Item>
-                <Sidebar.Item
-                  href="#"
-                  icon={HiArrowSmRight}
-                >
-                  Sign In
-                </Sidebar.Item>
-                <Sidebar.Item
-                  href="#"
-                  icon={HiTable}
-                >
-                  Sign Up
-                </Sidebar.Item>
-              </Sidebar.ItemGroup>
-            </Sidebar.Items>
-          </Sidebar>
+    return (
+        <div>
+            <div className="container mx-auto">
+                <Navbar fluid={true} rounded={true}>
+                    <Navbar.Brand href="https://flowbite.com/">
+                        <img src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-6 sm:h-9"
+                             alt="Flowbite Logo"/>
+                        <span
+                            className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">QTerminals</span>
+                    </Navbar.Brand>
+                    <div className="flex md:order-2">
+                        <Button>Get started</Button>
+                        <Navbar.Toggle/>
+                    </div>
+                    <Navbar.Collapse>
+                        <Navbar.Link href="/navbars" active={true}>Home</Navbar.Link>
+                        <Navbar.Link href="/navbars">About</Navbar.Link>
+                        <Navbar.Link href="/navbars">Services</Navbar.Link>
+                        <Navbar.Link href="/navbars">Pricing</Navbar.Link>
+                        <Navbar.Link href="/navbars">Contact</Navbar.Link>
+                    </Navbar.Collapse>
+                </Navbar>
+            </div>
+            <div className="flex justify-start container mx-auto h-screen">
+                <div className="w-fit">
+                    <Sidebar aria-label="Default sidebar example">
+                        <Sidebar.Items>
+                            <Sidebar.ItemGroup>
+                                <Sidebar.Item
+                                    href="#"
+                                    icon={HiChartPie}
+                                >
+                                    Dashboard
+                                </Sidebar.Item>
+                                <Sidebar.Item
+                                    href="#"
+                                    icon={HiViewBoards}
+                                    label="Pro"
+                                    labelColor="alternative"
+                                >
+                                    Kanban
+                                </Sidebar.Item>
+                                <Sidebar.Item
+                                    href="#"
+                                    icon={HiInbox}
+                                    label="3"
+                                >
+                                    Inbox
+                                </Sidebar.Item>
+                                <Sidebar.Item
+                                    href="#"
+                                    icon={HiUser}
+                                >
+                                    Users
+                                </Sidebar.Item>
+                                <Sidebar.Item
+                                    href="#"
+                                    icon={HiShoppingBag}
+                                >
+                                    Products
+                                </Sidebar.Item>
+                                <Sidebar.Item
+                                    href="#"
+                                    icon={HiArrowSmRight}
+                                >
+                                    Sign In
+                                </Sidebar.Item>
+                                <Sidebar.Item
+                                    href="#"
+                                    icon={HiTable}
+                                >
+                                    Sign Up
+                                </Sidebar.Item>
+                            </Sidebar.ItemGroup>
+                        </Sidebar.Items>
+                    </Sidebar>
+                </div>
+                <div className="w-full">
+                    <div className="flex justify-between container mx-auto">
+                        <div>
+                            <h1 className="text-4xl font-semibold">Project Title</h1>
+                        </div>
+                        <div>
+                            <h1 className="text-4xl font-semibold">Project Title</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div className="container mx-auto mt-12">
-        <div className="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
-          <div className="w-full px-4 py-5 bg-white rounded-lg shadow">
-            <div className="text-sm font-medium text-gray-500 truncate">
-              Total users
-            </div>
-            <div className="mt-1 text-3xl font-semibold text-gray-900">
-              12,00
-            </div>
-          </div>
-          <div className="w-full px-4 py-5 bg-white rounded-lg shadow">
-            <div className="text-sm font-medium text-gray-500 truncate">
-              Total Profit
-            </div>
-            <div className="mt-1 text-3xl font-semibold text-gray-900">
-              $ 450k
-            </div>
-          </div>
-          <div className="w-full px-4 py-5 bg-white rounded-lg shadow">
-            <div className="text-sm font-medium text-gray-500 truncate">
-              Total Orders
-            </div>
-            <div className="mt-1 text-3xl font-semibold text-gray-900">
-              20k
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default App;
