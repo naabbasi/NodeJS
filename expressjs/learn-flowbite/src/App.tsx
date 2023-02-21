@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
-import { Navbar, Button, Sidebar } from "flowbite-react";
+import { Button, Navbar, Sidebar } from "flowbite-react";
 import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiViewBoards } from "react-icons/hi";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 function App() {
   return (
@@ -33,49 +33,31 @@ function App() {
           <Sidebar aria-label="Default sidebar example">
             <Sidebar.Items>
               <Sidebar.ItemGroup>
-                <Sidebar.Item
-                  href="/dashboard"
-                  icon={HiChartPie}
-                >
-                  Dashboard
-                </Sidebar.Item>
-                <Sidebar.Item
-                  href="/layout"
-                  icon={HiViewBoards}
-                  label="Pro"
-                  labelColor="alternative"
-                >
-                  Kanban
-                </Sidebar.Item>
-                <Sidebar.Item
-                  href="#/test"
-                  icon={HiInbox}
-                  label="3"
-                >
+                <Link to="/dashboard">
+                  <Sidebar.Item as={"div"} icon={HiChartPie}>
+                    Dashboard
+                  </Sidebar.Item>
+                </Link>
+                <Link to="/layout">
+                  <Sidebar.Item as={"div"} icon={HiViewBoards} label="Pro" labelColor="alternative">
+                    Kanban
+                  </Sidebar.Item>
+                </Link>
+                <Sidebar.Item as="div" icon={HiInbox} label="3">
                   Inbox
                 </Sidebar.Item>
-                <Sidebar.Item
-                  href="/users"
-                  icon={HiUser}
-                >
-                  Users
-                </Sidebar.Item>
-                <Sidebar.Item
-                  href="#"
-                  icon={HiShoppingBag}
-                >
+                <Link to="/users">
+                  <Sidebar.Item as="div" icon={HiUser}>
+                    Users
+                  </Sidebar.Item>
+                </Link>
+                <Sidebar.Item as="div" icon={HiShoppingBag}>
                   Products
                 </Sidebar.Item>
-                <Sidebar.Item
-                  href="#"
-                  icon={HiArrowSmRight}
-                >
+                <Sidebar.Item as="div" icon={HiArrowSmRight}>
                   Sign In
                 </Sidebar.Item>
-                <Sidebar.Item
-                  href="#"
-                  icon={HiTable}
-                >
+                <Sidebar.Item as="div" icon={HiTable}>
                   Sign Up
                 </Sidebar.Item>
               </Sidebar.ItemGroup>

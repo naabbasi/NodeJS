@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Table } from "flowbite-react";
+import React, { useEffect, useRef, useState } from "react";
+import { Pagination, Table } from "flowbite-react";
 import { User } from "@interfaces/User";
 import { HttpClient } from "../utils/HttpClient";
 import { AxiosResponse } from "axios/index";
@@ -8,15 +8,33 @@ import { Link } from "react-router-dom";
 export default function() {
   const httpClient: HttpClient = new HttpClient();
   const [users, setUsers] = useState([]);
+  const dataFetchedRef = useRef(false);
+
   useEffect(() => {
+    if(dataFetchedRef.current) return;
+
+    dataFetchedRef.current = true;
     httpClient.get("users")?.then((res: AxiosResponse) => {
-      console.log(res.status, res.data);
-      setUsers(res.data);
+      console.log("Fetching data", dataFetchedRef.current)
+      if(res.status === 200){
+        setUsers(res.data);
+        dataFetchedRef.current = false;  
+      }
     });
   }, []);
 
+  const onPageChange = (event: any) => {
+    console.log('Event: ', event)
+    httpClient.get("users")?.then((res: AxiosResponse) => {
+      if(res.status === 200){
+        setUsers(res.data);
+      }
+    });
+  }
+
   return (
     <div>
+      <Pagination currentPage={1} onPageChange={$event => onPageChange($event)} showIcons={true} totalPages={10}/>
       <Table hoverable={true} striped={true}>
         <Table.Head>
           <Table.HeadCell>
@@ -41,7 +59,7 @@ export default function() {
         <Table.Body className="divide-y">
           {
             users.map((user: User, index) => (
-              <Table.Row key={index.toString()} className="bg-white dark:border-gray-700 dark:bg-gray-800">
+              <Table.Row key={`_${index.toString()}`} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                 <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                   {user.username}
                 </Table.Cell>
