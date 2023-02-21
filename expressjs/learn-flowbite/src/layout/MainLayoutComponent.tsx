@@ -1,7 +1,7 @@
 import { Sidebar } from "flowbite-react";
 import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser } from "react-icons/hi";
 
-function MainLayout() {
+function MainLayoutComponent() {
     return (
         <div className="flex">
             <div className="flex flex-col h-screen p-1 shadow w-60">
@@ -90,4 +90,4 @@ function MainLayout() {
     );
 }
 
-export default MainLayout;
+export default MainLayoutComponent;

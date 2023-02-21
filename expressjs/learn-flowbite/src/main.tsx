@@ -19,9 +19,7 @@ if (container) {
     ReactDOM.createRoot(container as HTMLElement).render(
         <Flowbite theme={{theme}}>
             <React.StrictMode>
-                <RouterProvider router={applicationRouter} fallbackElement={<div>
-                  <Spinner color="success" aria-label="Success spinner example"/>
-                </div>}/>
+                <RouterProvider router={applicationRouter} />
             </React.StrictMode>
         </Flowbite>
     );

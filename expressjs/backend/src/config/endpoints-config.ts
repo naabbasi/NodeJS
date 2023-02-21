@@ -15,7 +15,19 @@ class EndpointsConfig {
     this._server.set("json spaces", 2);
     this._server.use(bodyParser.urlencoded({ extended: false }));
     this._server.use(bodyParser.json());
-    this._server.use(cors());
+
+    let hosts: string[] = ['http://localhost:5173', 'http://localhost:3000'];
+    let methods: string[] = ['GET','POST','DELETE','UPDATE','PUT','PATCH', 'OPTIONS'];
+    /*let headers: string[] = ["Accept", "Origin", "X-Requested-With", "Content-Type", "Accept-Language", "X-Auth-Token", "Authorization", "X-Forwarded-For"];*/
+
+    this._server.use(cors({
+      origin: hosts,
+      preflightContinue: true,
+      optionsSuccessStatus: 200,
+      credentials:true,
+      methods: methods,
+      /*allowedHeaders: headers,*/
+    }));
     return this._server;
   }
 

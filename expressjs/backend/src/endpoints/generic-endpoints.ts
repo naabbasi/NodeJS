@@ -1,6 +1,7 @@
 import { Request, Response, Router } from "express";
 import { AppDataSource } from "@data-source/data-source.js";
 import { Repository } from "typeorm";
+import cors from "cors";
 
 export default abstract class GenericEndpoints<T extends object> {
   protected readonly router: Router;
@@ -10,7 +11,7 @@ export default abstract class GenericEndpoints<T extends object> {
   }
 
   get = () => {
-    this.router.get("/:gkey", async (req: Request, res: Response) => {
+    this.router.get("/:gkey", cors(), async (req: Request, res: Response) => {
       let gkey = req.params["gkey"];
       let result = await AppDataSource.manager.findOneBy(this.getEntity().name, { gkey: gkey });
 
@@ -24,7 +25,13 @@ export default abstract class GenericEndpoints<T extends object> {
   };
 
   all = () => {
-    this.router.get("/", async (req: Request, res: Response) => {
+    this.router.get("/", cors({
+      origin: ['http://localhost:5173'],
+      credentials: true,
+      preflightContinue: true,
+      methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
+      allowedHeaders: ['Origin', 'X-Requested With', 'Content-Type', 'Accept', 'X-TOKEN', 'Authorization']
+    }), async (req: Request, res: Response) => {
       let repository: Repository<T> = AppDataSource.getRepository(this.getEntity().name);
       let result = await repository.find();
       res.status(200).json(result);
@@ -32,19 +39,19 @@ export default abstract class GenericEndpoints<T extends object> {
   };
 
   post = () => {
-    this.router.post("/", (req: Request, res: Response) => {
+    this.router.post("/", cors(), (req: Request, res: Response) => {
       res.status(201).send("Hello World");
     });
   };
 
   put = () => {
-    this.router.put("/", (req: Request, res: Response) => {
+    this.router.put("/", cors(), (req: Request, res: Response) => {
       res.status(202).send("Hello World");
     });
   };
 
   delete = () => {
-    this.router.delete("/", (req: Request, res: Response) => {
+    this.router.delete("/", cors(), (req: Request, res: Response) => {
       res.status(202).send("Hello World");
     });
   };
