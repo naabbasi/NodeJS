@@ -51,9 +51,11 @@ function App() {
                     Users
                   </Sidebar.Item>
                 </Link>
-                <Sidebar.Item as="div" icon={HiShoppingBag}>
-                  Products
-                </Sidebar.Item>
+                <Link to="/tw-users">
+                  <Sidebar.Item as="div" icon={HiShoppingBag}>
+                    PrimeReact Users
+                  </Sidebar.Item>
+                </Link>
                 <Sidebar.Item as="div" icon={HiArrowSmRight}>
                   Sign In
                 </Sidebar.Item>

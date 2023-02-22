@@ -5,7 +5,7 @@ import { HttpClient } from "../utils/HttpClient";
 import { AxiosResponse } from "axios/index";
 import { Link } from "react-router-dom";
 
-export default function() {
+export default function UserComponent() {
   const httpClient: HttpClient = new HttpClient();
   const [users, setUsers] = useState([]);
   const dataFetchedRef = useRef(false);
