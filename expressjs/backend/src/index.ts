@@ -4,6 +4,7 @@ import createHttpError from "http-errors";
 import "reflect-metadata";
 import { AppEndpoints } from "@endpoints/app-endpoints.js";
 import { UserEndpoints } from "@endpoints/user-endpoints.js";
+import { DataGeneratorEndpoints } from "@endpoints/data-generator-endpoints.js";
 
 const server = EndpointsConfig.server;
 server.use((req: Request, res: Response, next: NextFunction) => {
@@ -13,9 +14,11 @@ server.use((req: Request, res: Response, next: NextFunction) => {
 
 const appRouters = new AppEndpoints(express.Router()).getEndpoints();
 const userRouters = new UserEndpoints(express.Router()).getEndpoints();
+const dataGeneratorRoutes = new DataGeneratorEndpoints(express.Router()).getEndpoints();
 
 server.use("/api/apps", appRouters);
 server.use("/api/users", userRouters);
+server.use("/api/generate", dataGeneratorRoutes);
 
 server.use((req: Request, res: Response, next: NextFunction) => {
   console.log(`${req.method} ${req.url}`);

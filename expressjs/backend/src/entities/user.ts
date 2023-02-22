@@ -1,9 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity } from "typeorm";
+import { GenericEntity } from "@entities/generic-entity.js";
 
 @Entity({ name: "user" })
-export class User {
-  @PrimaryGeneratedColumn({ name: "gkey", type: "bigint" })
-  gkey: number | undefined;
+export class User extends GenericEntity {
   @Column({ name: "username", type: "varchar" })
   username: string | undefined;
   @Column({ name: "password", type: "varchar" })
@@ -12,10 +11,9 @@ export class User {
   firstName: string | undefined;
   @Column({ name: "last_name", type: "varchar", nullable: true })
   lastName: string | undefined;
-  @Column({ name: "age", type: "int", nullable: true })
-  age: number | undefined;
 
   constructor(userObject?: any) {
+    super();
     Object.assign(this, userObject);
   }
 

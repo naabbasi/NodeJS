@@ -1,15 +1,15 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity } from "typeorm";
+import { GenericEntity } from "@entities/generic-entity.js";
 
 @Entity({ name: "application" })
-export class Application {
-  @PrimaryGeneratedColumn({ name: "gkey", type: "bigint" })
-  gkey: number | undefined;
+export class Application extends GenericEntity {
   @Column({ name: "application_name", type: "varchar" })
   applicationName: string | undefined;
   @Column({ name: "life_cycle_state", type: "varchar" })
   lifeCycleState: string | undefined;
 
   constructor(applicationObject?: any) {
+    super();
     Object.assign(this, applicationObject);
   }
 
