@@ -5,10 +5,10 @@
   "main": "index.ts",
   "type": "module",
   "scripts": {
-    "build": "npx tsc",
-    "start": "node dist/index.js",
-    "predev": "rimraf dist && npx tsc && tsc-alias",
-    "dev": "concurrently \"npx tsc --watch\" \"tsc-alias --watch\" \"nodemon -q dist/index.js\"",
+    "build": "concurrently \"npx tsc\" \"npx tsc-alias\"",
+    "start": "concurrently \"npx tsc-alias\" \"node dist/index.js\"",
+    "predev": "rimraf dist && npx tsc && npx tsc-alias",
+    "dev": "concurrently \"npx tsc --watch\" \"tsc-alias --watch\" \"node --watch dist/index.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "engr.nomiabbasi@gmail.com",
