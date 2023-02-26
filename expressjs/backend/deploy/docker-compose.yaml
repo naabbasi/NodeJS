@@ -12,7 +12,7 @@ services:
     environment:
       ENV_NAME: production
     ports:
-      - "8000:8000"
+      - "8080:8080"
     depends_on:
       mysql8:
         condition: service_started
