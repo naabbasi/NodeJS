@@ -1,0 +1,4 @@
+node_modules
+build-docker-image.sh
+docker-compose.yaml
+Dockerfile

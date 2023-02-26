@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Getting started with nodejs, expressjs, typeorm, reactjs with primereact and typescript",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {
+    "prestart": "npx tsc-alias",
+    "start": "node dist/index.js"
+  },
+  "author": "engr.nomiabbasi@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "http-errors": "^2.0.0",
+    "mysql": "^2.18.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.12",
+    "@faker-js/faker": "^7.6.0"
+  }
+}
