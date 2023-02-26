@@ -1,17 +1,15 @@
 version: "3"
+#networks:
+#  api_server_default:
+#    external: true
 services:
-  node:
-    image: "node:19-alpine"
-    user: "node"
-    working_dir: /opt/project
-    environment:
-      - NODE_ENV=production
-    volumes:
-      - ./:/opt/project
-    expose:
-      - "8000"
+  ecommerce_app:
+    #    networks:
+    #      - api_server_default
     build:
       context: .
-    command: > 
-      sh -c "npm install && 
-             npm run start"
+      dockerfile: Dockerfile
+    environment:
+      ENV_NAME: production
+    ports:
+      - "8000:8000"
