@@ -8,7 +8,7 @@ dotenv.config();
 class EndpointsConfig {
   private static readonly _server: Express = express();
   private static readonly _router = express.Router();
-  private static readonly _port = process?.env["PORT"] || 8000;
+  private static readonly _port = process?.env["PORT"] || 8080;
   private static readonly _routes = new Array<express.Router>();
 
   static get server(): express.Express {
