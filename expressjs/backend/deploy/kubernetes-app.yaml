@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce_app
+  labels:
+    name: ecommerce_app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: ecommerce_app
+  template:
+    metadata:
+      labels:
+        name: ecommerce_app
+    spec:
+      containers:
+        - name: ecommerce_app
+          image: deploy_ecommerce_app:latest
+          imagePullPolicy: Never
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
