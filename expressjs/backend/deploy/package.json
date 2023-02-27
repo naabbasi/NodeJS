@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "prestart": "npx tsc-alias",
-    "start": "node -e \"setTimeout(()=>{},5000)\" && node app/index.js"
+    "start": "node -e \"setTimeout(()=>{},10000)\" && node app/index.js"
   },
   "author": "engr.nomiabbasi@gmail.com",
   "license": "MIT",
