@@ -3,20 +3,6 @@ version: "3"
 #  api_server_default:
 #    external: true
 services:
-  ecommerce_app:
-    #    networks:
-    #      - api_server_default
-    build:
-      context: .
-      dockerfile: Dockerfile
-    environment:
-      ENV_NAME: production
-    ports:
-      - "8080:8080"
-    depends_on:
-      mysql8:
-        condition: service_started
-
   mysql8:
     container_name: mysql8
     image: mysql:latest
@@ -33,3 +19,16 @@ services:
       - './docker-db/data:/var/lib/mysql'
       - './docker-db/my.cnf:/etc/mysql/conf.d/my.cnf'
       - './docker-db/sql:/docker-entrypoint-initdb.d'
+  ecommerce_app:
+    #    networks:
+    #      - api_server_default
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      ENV_NAME: production
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql8:
+        condition: service_started
