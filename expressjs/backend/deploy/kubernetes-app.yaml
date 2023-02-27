@@ -1,24 +1,25 @@
+#https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecommerce_app
+  name: ecommerce-app
   labels:
-    name: ecommerce_app
+    name: ecommerce-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: ecommerce_app
+      name: ecommerce-app
   template:
     metadata:
       labels:
-        name: ecommerce_app
+        name: ecommerce-app
     spec:
       containers:
-        - name: ecommerce_app
+        - name: ecommerce-app
           image: deploy_ecommerce_app:latest
           imagePullPolicy: Never
           ports:
             - name: http
-              containerPort: 8000
+              containerPort: 8080
               protocol: TCP
