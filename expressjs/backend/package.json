@@ -5,9 +5,9 @@
   "main": "index.ts",
   "type": "module",
   "scripts": {
-    "prebuild": "rimraf ./deploy/app/",
+    "prebuild": "rimraf ./deploy/dist/",
     "build": "concurrently \"npx tsc\" \"npx tsc-alias\"",
-    "postbuild": "copyfiles -VEau 1 ./dist/** ./deploy/app && copyfiles -VEu 1 ./dist/**/** ./deploy/app",
+    "postbuild": "copyfiles -VEau 1 ./dist/** ./deploy/dist && copyfiles -VEu 1 ./dist/**/** ./deploy/dist",
     "prestart": "npx tsc-alias",
     "start": "node -e \"setTimeout(()=>{},10000)\" && node dist/index.js",
     "predev": "rimraf dist && npx tsc && npx tsc-alias",
