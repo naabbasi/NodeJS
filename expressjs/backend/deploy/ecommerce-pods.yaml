@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Pod
+metadata:
+  name: ecommerce-app-containers
+spec:
+  restartPolicy: Never
+  volumes:
+    - name: shared-data
+      emptyDir: {}
+
+  containers:
+    - name: ecommerce-node-container
+      image: deploy_ecommerce_app:latest
+      imagePullPolicy: Never
+      volumeMounts:
+        - name: shared-data
+          mountPath: /usr/share/nginx/html
+
+    - name: ecommerce-mysql-container
+      image: mysql:latest
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: root
+        #- name: MYSQL_ALLOW_EMPTY_PASSWORD
+        #  value: "yes"
+        - name: MYSQL_DATABASE
+          value: typeorm
+        - name: MYSQL_USER
+          value: qbill_dev
+        - name: MYSQL_PASSWORD
+          value: Qt@DeV
+      volumeMounts:
+        - name: shared-data
+          mountPath: /pod-data
+      command: ["/bin/sh"]
+      args: ["-c", "echo Hello from the debian container > /pod-data/index.html"]
