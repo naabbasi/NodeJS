@@ -2,7 +2,7 @@ import { createBrowserRouter, createRoutesFromElements, Route } from "react-rout
 import App from "./App";
 import React, { lazy } from "react";
 
-const UserComponent = lazy(() => import("./components/UserComponent"));
+const UserComponent = lazy(() => import("@components/UserComponent"));
 
 /*const applicationRouter = createBrowserRouter([
     {

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Pagination, Table } from "flowbite-react";
 import { User } from "@interfaces/User";
-import { HttpClient } from "../utils/HttpClient";
+import { HttpClient } from "@utils/HttpClient";
 import { AxiosResponse } from "axios/index";
 import { Link } from "react-router-dom";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { Flowbite, Spinner } from "flowbite-react";
+import { Flowbite } from "flowbite-react";
 import { RouterProvider } from "react-router-dom";
 import applicationRouter from "./router";
 

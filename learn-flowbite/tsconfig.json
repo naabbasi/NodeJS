@@ -4,7 +4,7 @@
     "paths": {
       "@interfaces/*": ["interfaces/*"],
       "@components/*": ["components/*"],
-      "@utils/*": ["utils/*"],
+      "@utils/*": ["utils/*"]
     },
     "target": "ESNext",
     "useDefineForClassFields": true,
@@ -23,5 +23,5 @@
     "jsx": "react-jsx"
   },
   "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.node.json"}]
 }
